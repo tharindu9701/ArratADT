@@ -48,7 +48,7 @@ class ArrayADT{
             }
             array[index] = value;
             size++;
-            System.out.println(value + " inserted at "+index);
+            
         }
     }
 
@@ -86,47 +86,79 @@ class ArrayADT{
 
     public void traverse() {
         for(int i = 0; i <= size -1; i++){
-            System.out.println(array[i]+" ");
+            if(i==0)
+            System.out.print("Array : ["+array[i]+",");
+            else if(i==size-1)
+            System.out.print(array[i]+"]");
+            else 
+            System.out.print(array[i]+",");
         }
         System.out.println();
     }
 
+    // intersection of two arrays
+
+    public void intersection(int arr1[], int arr2[]){
+
+        ArrayADT result = new ArrayADT(5);
+        for(int i=0; i < arr1.length; i++){
+            for(int j=0; j < arr2.length; j++){
+                if (arr1[i] == arr2[j]){
+                    result.insert(result.size, arr1[i]);
+                }
+            }
+        }result.traverse();
+    }
+
     public static void main(String args[]){
-        ArrayADT arr = new ArrayADT(5);
+        ArrayADT arr1 = new ArrayADT(5);
+        ArrayADT arr2 = new ArrayADT(5);
 
         Scanner input = new Scanner(System.in);
 
 
         // inserting elements
-        for(int i=0; i <= arr.array.length-1;i++){
-            System.out.print(i + "index is : ");
+        System.out.println("Enter the elements for the first array : ");
+        for(int i=0; i <= arr1.array.length-1;i++){
+            System.out.print((i+1) + " element - ");
             int value = input.nextInt();
-            arr.insert(i,value);
+            arr1.insert(i,value);
+        }
+        System.out.println("Enter the elements for the second array : ");
+        for(int i=0; i <= arr2.array.length-1;i++){
+            System.out.print((i+1) + " element - ");
+            int value = input.nextInt();
+            arr2.insert(i,value);
         }
 
         //accessing and modifying
-        System.out.println("Element at index 2: "+arr.get(2));
-        arr.set(2,9);
-        System.out.println("Modified element at index : " +arr.get(2));
-
+        /*System.out.println("Element at index 2: "+arr1.get(2));
+        arr1.set(2,9);
+        System.out.println("Modified element at index : " +arr1.get(2));
+1
         //Determining the size
-        System.out.println("Size of the array : " + arr.getSize());
+        System.out.println("Size of the array : " + arr1.getSize());
 
         //delete the element
        
         System.out.println("Enter the delete index : ");
         int index = input.nextInt();
-        arr.delete(index);
-        System.out.println("Size after the deleting element : "+ arr.getSize());
+        arr1.delete(index);
+        System.out.println("Size after the deleting element : "+ arr1.getSize());
 
         //searching element
         
         System.out.println("Search element : ");
         int value = input.nextInt();
-        System.out.println("Element :" +arr.search(value));
+        System.out.println("Element :" +arr1.search(value));*/
 
         //Traversing the array
-        arr.traverse();
+        arr1.traverse();
+        arr2.traverse();
+
+        //intersection of two arrays
+        System.out.print("Intersection of two arrays : ");
+        arr1.intersection(arr1.array,arr2.array);
 
 
     }
